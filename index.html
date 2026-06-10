@@ -9,6 +9,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Parisienne&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
+  <style>
+    #form-status { display: none; margin-bottom: 18px; padding: 16px; border-radius: 14px; font-weight: 800; line-height: 1.5; }
+    #form-status.success { display: block; background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.4); color: #dff8e8; }
+    #form-status.error { display: block; background: rgba(231, 76, 60, 0.15); border: 1px solid rgba(231, 76, 60, 0.4); color: #ffd7d2; }
+    .submit[disabled] { opacity: 0.65; cursor: not-allowed; transform: none; }
+  </style>
 </head>
 <body>
   <div class="page-glow page-glow-one"></div><div class="page-glow page-glow-two"></div><div class="noise"></div>
@@ -43,20 +50,75 @@
     <section class="section tasting"><div class="tasting-card reveal"><div><p class="kicker">Tasting meetings</p><h2>Taste before you book.</h2><p>Pour Vida offers tasting meetings before committing to a booking for a $50 non-refundable deposit. That deposit can be applied to your service once the proposal has been accepted.</p></div><a href="#inquire" class="btn primary">Ask About a Tasting</a></div></section>
     <section class="section process" id="process"><div class="section-head reveal"><p class="kicker">Booking process</p><h2>Simple inquiry. Clear proposal. Better event planning.</h2></div><div class="steps"><div class="step reveal"><span>01</span><h3>Submit your event details</h3><p>Date, time, duration, estimated guests, event type, location/zip code, and drink preferences.</p></div><div class="step reveal"><span>02</span><h3>Pour Vida reviews the request</h3><p>Pricing is based on number of guests, hours of service, and event area.</p></div><div class="step reveal"><span>03</span><h3>Receive next steps</h3><p>She’ll follow up with availability, service recommendations, tasting options, and proposal details.</p></div></div></section>
     <section class="section faq-pricing" id="faq"><div class="pricing-box reveal"><p class="kicker">Pricing</p><h2>Custom pricing based on the event.</h2><p>Because every event is different, Pour Vida pricing is based on guest count, hours of service, and event location. Submit the inquiry form for a custom proposal.</p><a href="sms:4692672480" class="text-link">Prefer texting? 469-267-2480</a></div><div class="faq-box reveal"><details open><summary>What does dry hire mean?</summary><p>The client provides the alcohol. Pour Vida provides the bar service, tools, fresh ingredients, and service experience depending on the package.</p></details><details><summary>What events does Pour Vida serve?</summary><p>Weddings, birthdays, private parties, corporate events, and other celebrations in the DFW area.</p></details><details><summary>Can non-alcoholic drinks be included?</summary><p>Yes. Beer, wine, cocktails, and non-alcoholic options can all be discussed in the inquiry.</p></details><details><summary>Does Pour Vida offer tastings?</summary><p>Yes. Tastings are available with a $50 non-refundable deposit that can be applied after the proposal is accepted.</p></details></div></section>
-    <section class="section inquire" id="inquire"><div class="inquire-copy reveal"><p class="kicker">Inquiry form</p><h2>Let’s build your bar experience.</h2><p>Submit the details below and Pour Vida will follow up. For faster questions, text <a href="sms:4692672480">469-267-2480</a>.</p><div class="mini-contact"><span>Email</span><a href="mailto:pourvidatx@gmail.com">pourvidatx@gmail.com</a></div></div>
-       <form class="form reveal" action="https://formsubmit.co/pourvidadtx@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New Pour Vida Website Inquiry"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="true"><input type="hidden" name="_autoresponse" value="Thank you for contacting Pour Vida. We received your inquiry and will follow up soon."><input type="hidden" name="Text request number" value="469-267-2480"><input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off">
+    <section class="section inquire" id="inquire"><div class="inquire-copy reveal"><p class="kicker">Inquiry form</p><h2>Let’s build your bar experience.</h2><p>Submit the details below and Pour Vida will follow up. For faster questions, text <a href="sms:4692672480">469-267-2480</a>.</p><div class="mini-contact"><span>Email</span><a href="mailto:pourvidadtx@gmail.com">pourvidadtx@gmail.com</a></div></div>
+      <form class="form reveal" id="contact-form" action="https://formspree.io/f/xvznqabn" method="POST">
+        <div id="form-status" role="status" aria-live="polite"></div>
+        <input type="hidden" name="_subject" value="New Pour Vida Website Inquiry"><input type="hidden" name="Text request number" value="469-267-2480"><input type="hidden" id="recaptcha-token" name="g-recaptcha-response"><input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
         <div class="form-row"><label>Name<input type="text" name="Name" placeholder="Your name" required></label><label>Email<input type="email" name="Email" placeholder="you@email.com" required></label></div>
-        <div class="form-row"><label>Phone<input type="tel" name="Phone" placeholder="Your phone number"></label><label>Event Type<select name="Event Type" required><option value="">Select one</option><option>Wedding</option><option>Birthday</option><option>Private Party</option><option>Corporate Event</option><option>Other</option></select></label></div>
+        <div class="form-row"><label>Phone<input type="tel" name="Phone" placeholder="Your phone number" required></label><label>Event Type<select name="Event Type" required><option value="">Select one</option><option>Wedding</option><option>Birthday</option><option>Private Party</option><option>Corporate Event</option><option>Other</option></select></label></div>
         <div class="form-row"><label>Event Date<input type="date" name="Event Date" required></label><label>Time & Duration<input type="text" name="Time and Duration" placeholder="Example: 6 PM, 4 hours" required></label></div>
         <div class="form-row"><label>Estimated Guests<input type="number" name="Estimated Guests" min="1" placeholder="Example: 75" required></label><label>Event Zip Code<input type="text" name="Event Zip Code" placeholder="Example: 75001" required></label></div>
         <label>Drinks You Want To Serve<div class="checks"><span><input type="checkbox" name="Drinks[]" value="Beer"> Beer</span><span><input type="checkbox" name="Drinks[]" value="Wine"> Wine</span><span><input type="checkbox" name="Drinks[]" value="Cocktails"> Cocktails</span><span><input type="checkbox" name="Drinks[]" value="Non-alcoholic"> Non-alcoholic</span></div></label>
         <label>Which service are you interested in?<select name="Service Interest"><option value="">Not sure yet</option><option>Full Bar Service</option><option>Bartending Service</option><option>Tasting Meeting</option></select></label>
         <label>Event Details<textarea name="Event Details" rows="5" placeholder="Tell us about the venue, vibe, drink ideas, or anything else we should know."></textarea></label>
-        <button class="btn primary submit" type="submit">Send Inquiry</button><p class="form-note">This form uses CAPTCHA verification through FormSubmit. First-time setup may require confirming the Pour Vida inbox before submissions start forwarding.</p>
+        <button class="btn primary submit" type="submit">Send Inquiry</button><p class="form-note">Protected with Google reCAPTCHA. Pour Vida will follow up to confirm availability and proposal details.</p>
       </form></section>
   </main>
-  <footer class="footer"><div><span>Pour Vida</span><p>Dry hire mobile bar service serving DFW.</p></div><div class="footer-links"><a href="mailto:pourvidatx@gmail.com">pourvidadtx@gmail.com</a><a href="sms:4692672480">Text 469-267-2480</a></div></footer>
+  <footer class="footer"><div><span>Pour Vida</span><p>Dry hire mobile bar service serving DFW.</p></div><div class="footer-links"><a href="mailto:pourvidadtx@gmail.com">pourvidadtx@gmail.com</a><a href="sms:4692672480">Text 469-267-2480</a></div></footer>
   <script src="script.js"></script>
+  <script>
+    const RECAPTCHA_SITE_KEY = "YOUR_RECAPTCHA_SITE_KEY";
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("form-status");
+
+    function showFormStatus(type, message) {
+      formStatus.className = type;
+      formStatus.textContent = message;
+    }
+
+    contactForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+      formStatus.className = "";
+      formStatus.textContent = "";
+
+      try {
+        if (!window.grecaptcha || RECAPTCHA_SITE_KEY === "YOUR_RECAPTCHA_SITE_KEY") {
+          throw new Error("reCAPTCHA site key is missing. Replace YOUR_RECAPTCHA_SITE_KEY in index.html.");
+        }
+
+        const token = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: "submit" });
+        document.getElementById("recaptcha-token").value = token;
+
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: new FormData(contactForm),
+          headers: { Accept: "application/json" }
+        });
+
+        if (response.ok) {
+          contactForm.reset();
+          showFormStatus("success", "Thank you! Your inquiry has been sent. Pour Vida will follow up soon.");
+        } else {
+          const data = await response.json().catch(() => ({}));
+          const message = data.errors?.map(error => error.message).join(" ") || "Something went wrong. Please try again or text 469-267-2480.";
+          showFormStatus("error", message);
+        }
+      } catch (error) {
+        showFormStatus("error", error.message || "Something went wrong. Please try again or text 469-267-2480.");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Inquiry";
+      }
+    });
+  </script>
 </body>
 </html>
